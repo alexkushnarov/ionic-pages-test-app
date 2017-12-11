@@ -11,6 +11,9 @@ import { RecipePageModule } from '../pages/recipe/recipe.module';
 import { ShoppingListPageModule } from '../pages/shopping-list/shopping-list.module';
 import { TabsPageModule } from '../pages/tabs/tabs.module';
 
+import { ShoppingListService } from '../services/shopping-list';
+import { RecipesService } from '../services/recipes';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +34,9 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ShoppingListService,
+    RecipesService
   ]
 })
 export class AppModule {}

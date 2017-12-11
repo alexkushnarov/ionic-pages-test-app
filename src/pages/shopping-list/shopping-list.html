@@ -1,18 +1,60 @@
-<!--
-  Generated template for the ShoppingListPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>shopping-list</ion-title>
+    <ion-title>Shopping List</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <ion-list>
 
+      <ion-item>
+        <ion-label fixed>Name</ion-label>
+        <ion-input
+          type="text"
+          name="ingredient"
+          placeholder="Milk"
+          ngModel
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Amount</ion-label>
+        <ion-input
+          type="number"
+          name="amount"
+          placeholder="2"
+          ngModel
+          required
+        ></ion-input>
+      </ion-item>
+
+    </ion-list>
+    <button
+      ion-button
+      type="submit"
+      block
+      [disabled]="form.invalid"
+    >Add Item</button>
+  </form>
+
+  <ion-list *ngIf="ingredients && ingredients.length" padding-top>
+    <ion-list-header></ion-list-header>
+    <ion-item-sliding *ngFor="let item of ingredients; let index = index;">
+      <ion-item>
+        {{item.name}} ({{item.amount}})
+      </ion-item>
+      <ion-item-options side="right">
+        <button color="danger" ion-button expandable (click)="onRemoveItem(index)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
