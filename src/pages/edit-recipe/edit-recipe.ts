@@ -148,9 +148,11 @@ export class EditRecipePage {
       title = this.recipe.title;
       description = this.recipe.description;
       difficulty = this.recipe.difficulty;
-      this.recipe.ingredients.forEach((ingredient) => {
-        ingredients.push(new FormControl(ingredient.name, Validators.required))
-      });
+      if (this.recipe.ingredients) {
+        this.recipe.ingredients.forEach((ingredient) => {
+          ingredients.push(new FormControl(ingredient.name, Validators.required))
+        });
+      }
     }
 
     this.recipeForm = new FormGroup({

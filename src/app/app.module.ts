@@ -13,10 +13,16 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
 
 import { ShoppingListService } from '../services/shopping-list';
 import { RecipesService } from '../services/recipes';
+import { SigninPageModule } from '../pages/signin/signin.module';
+import { SignupPageModule } from '../pages/signup/signup.module';
+import { AuthService } from '../services/auth';
+import { DbOptionsPage } from '../pages/db-options/db-options';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     MyApp,
+    DbOptionsPage
   ],
   imports: [
     BrowserModule,
@@ -25,18 +31,24 @@ import { RecipesService } from '../services/recipes';
     RecipesPageModule,
     ShoppingListPageModule,
     TabsPageModule,
+    SigninPageModule,
+    SignupPageModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    DbOptionsPage
   ],
   providers: [
+    HttpClient,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ShoppingListService,
-    RecipesService
+    RecipesService,
+    AuthService
   ]
 })
 export class AppModule {}
